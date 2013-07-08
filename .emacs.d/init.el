@@ -22,6 +22,7 @@
 
 (defun package-ensure-installed (package)
   (unless (package-installed-p package)
+    (package-refresh-contents)
     (package-install package)))
 
 ; http://bytes.inso.cc/2011/08/13/auto-installing-packages-in-emacs-with-elpa-and-el-get/
@@ -84,11 +85,12 @@
 (when (>= emacs-major-version 21)
   (setf (default-value 'cursor-in-non-selected-windows) nil)
   (blink-cursor-mode 0)
-  (tool-bar-mode -1)
   (scroll-bar-mode -1)
   (if (featurep 'tooltip)
       (tooltip-mode -1)))
 
+(if window-system
+    (tool-bar-mode -1))
 ;;
 ;; Theme, font, colors, and behavior
 ;;
