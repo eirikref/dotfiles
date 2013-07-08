@@ -1,75 +1,47 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# .bashrc
+# 
+# eirikref@gmail.com
+# 2013-07-08
 
-# If not running interactively, don't do anything:
-[ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-#export HISTCONTROL=ignoredups
+## Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
 
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
+## Terminal
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias ls='ls --color=auto'
+    export TERM=xterm-256color
+elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias ls='ls -G'
-    # alias ls='ls --color=auto'
-    # alias dir='ls --color=auto --format=vertical'
-    # alias vdir='ls --color=auto --format=long'
 fi
 
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    ;;
-*)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    ;;
-esac
-
-# Comment in the above and uncomment this below for a color prompt
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-    ;;
-*)
-    ;;
-esac
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profiles
-# sources /etc/bash.bashrc).
-#if [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#fi
-
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 export LC_ALL="en_US.UTF-8"
 
-function parse_git_dirty {
+
+## git specific
+if [ -f /home/eirikref/.git-completion.bash ]; then
+    . /home/eirikref/.git-completion.bash
+fi
+
+function parseGitDirty
+{
     [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
-function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/{\1$(parse_git_dirty)}/"
+
+function parseGitBranch
+{
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/{\1$(parseGitDirty)}/"
 }
-function eirikref_prompt {
-    eval `dircolors $HOME/.dir_colors`
+
+
+#  Set prompt
+function setPrompt
+{
     DULL=0
     BRIGHT=1
 
@@ -132,29 +104,18 @@ function eirikref_prompt {
     PROMPT_COMMAND='export ERR=$?'
 
     PS1="${BRIGHT_VIOLET}[${VIOLET}\u@\h${WHITE}:\w\
-${GREEN}\$(parse_git_branch)\
+${GREEN}\$(parseGitBranch)\
 ${BRIGHT_VIOLET}]${NORMAL}\$ ${RESET}"
     PS2='> '
     PS4='+ '
 
 }
-eirikref_prompt
-alias screen='_ssh_auth_save ; export HOSTNAME=$(hostname) ; screen'
+setPrompt
 
 
-if [ -f /home/eirikref/.git-completion.bash ]; then
-        . /home/eirikref/.git-completion.bash
-fi
-
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
-fi
-
+## SSH specific things
 # Add bash completion for ssh: it tries to complete the host to which you 
 # want to connect from the list of the ones contained in ~/.ssh/known_hosts
-
 __ssh_known_hosts() {
     if [[ -f ~/.ssh/known_hosts ]]; then
         cut -d " " -f1 ~/.ssh/known_hosts | cut -d "," -f1
@@ -172,6 +133,3 @@ _ssh() {
         return 0
     fi
 }
-
-complete -o bashdefault -o default -o nospace -F _ssh ssh 2>/dev/null \
-    || complete -o default -o nospace -F _ssh ssh
