@@ -85,12 +85,11 @@
 (when (>= emacs-major-version 21)
   (setf (default-value 'cursor-in-non-selected-windows) nil)
   (blink-cursor-mode 0)
-  (scroll-bar-mode -1)
   (if (featurep 'tooltip)
-      (tooltip-mode -1)))
-
-(if window-system
-    (tool-bar-mode -1))
+      (tooltip-mode -1))
+  (if window-system
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
 ;;
 ;; Theme, font, colors, and behavior
 ;;
