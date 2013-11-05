@@ -49,6 +49,8 @@
 
 ; Load packages using ELPA
 (package-ensure-installed 'apache-mode)
+(package-ensure-installed 'applescript-mode)
+(package-ensure-installed 'coffee-mode)
 (package-ensure-installed 'css-mode)
 (package-ensure-installed 'js2-mode)
 (package-ensure-installed 'json-mode)
@@ -65,13 +67,20 @@
                :type git
                :url "git://github.com/eirikref/emacs.git"
 	       :load "themes/umberto-theme.el"
-               )))
+               )
+	(:name applescript-contrib
+               :type git
+               :url "git://github.com/echosa/emacs-mailapp.git"
+	       :load "applescript-contrib.el"
+               ))
+      )
 
-; git@github.com:eirikref/emacs.git
+
 ; list all packages you want installed
 (setq my-el-get-packages
       (append
        '(umberto)
+       '(applescript-contrib)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-el-get-packages)
