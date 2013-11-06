@@ -52,6 +52,7 @@
 (package-ensure-installed 'applescript-mode)
 (package-ensure-installed 'coffee-mode)
 (package-ensure-installed 'css-mode)
+(package-ensure-installed 'dart-mode)
 (package-ensure-installed 'js2-mode)
 (package-ensure-installed 'json-mode)
 (package-ensure-installed 'markdown-mode)
@@ -146,6 +147,15 @@
 (setq make-backup-files nil)
 (setq vc-make-backup-files nil)
 (setq auto-save-default nil)
+
+;;
+;; Overriding modes
+;;
+(defun my-dart-hook ()
+  (setq c-basic-offset 4))
+
+(add-hook 'dart-mode-hook 'my-dart-hook)  
+
 
 ;;
 ;; Everything below this mark is just old stuff I have not yet looked
