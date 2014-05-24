@@ -60,6 +60,7 @@
 (package-ensure-installed 'sass-mode)
 (package-ensure-installed 'smarty-mode)
 (package-ensure-installed 'yaml-mode)
+(package-ensure-installed 'rust-mode)
 
 ; Load specific packages from github using el-get
 ; extra recipes for packages unknown to el-get (yet)
@@ -154,7 +155,15 @@
 (defun my-dart-hook ()
   (setq c-basic-offset 4))
 
-(add-hook 'dart-mode-hook 'my-dart-hook)  
+(add-hook 'dart-mode-hook 'my-dart-hook)
+
+;;
+;; Tramp
+;;
+(setq tramp-default-method "ssh")
+(setq tramp-terminal-type "dumb")
+(setq tramp-debug-buffer t)
+(setq tramp-verbose 10)
 
 
 ;;
