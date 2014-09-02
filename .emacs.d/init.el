@@ -156,6 +156,7 @@
   (setq c-basic-offset 4))
 
 (add-hook 'dart-mode-hook 'my-dart-hook)
+(add-to-list 'auto-mode-alist '("\\.\\(hbs\\)\\'" . html-mode))
 
 ;;
 ;; Tramp
