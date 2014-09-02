@@ -157,6 +157,7 @@
 
 (add-hook 'dart-mode-hook 'my-dart-hook)
 (add-to-list 'auto-mode-alist '("\\.\\(hbs\\)\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(scss\\)\\'" . css-mode))
 
 ;;
 ;; Tramp
