@@ -67,8 +67,8 @@
 (setq el-get-sources
       '((:name umberto
                :type git
-               :url "git://github.com/eirikref/emacs.git"
-	       :load "themes/umberto-theme.el"
+               :url "git://github.com/eirikref/dotfiles.git"
+	       :load ".emacs.d/umberto-theme.el"
                )
 	(:name applescript-contrib
                :type git
