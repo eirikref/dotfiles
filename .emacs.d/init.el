@@ -55,6 +55,7 @@
 (package-ensure-installed 'dart-mode)
 (package-ensure-installed 'js2-mode)
 (package-ensure-installed 'json-mode)
+(package-ensure-installed 'jsx-mode)
 (package-ensure-installed 'markdown-mode)
 (package-ensure-installed 'php-mode)
 (package-ensure-installed 'sass-mode)
@@ -157,7 +158,14 @@
 
 (add-hook 'dart-mode-hook 'my-dart-hook)
 (add-to-list 'auto-mode-alist '("\\.\\(hbs\\)\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.\\(scss\\)\\'" . css-mode))
+;; (add-to-list 'auto-mode-alist '("\\.\\(scss\\)\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+
+;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/folder-where-you-put-scss-mode-el"))
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save 'nil)
 
 ;;
 ;; Tramp
@@ -282,7 +290,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(mouse-wheel-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
