@@ -24,8 +24,8 @@ export LC_ALL="en_US.UTF-8"
 
 
 ## git specific
-if [ -f /home/eirikref/.git-completion.bash ]; then
-    . /home/eirikref/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+    .  ~/.git-completion.bash
 fi
 
 function parseGitDirty
