@@ -25,17 +25,17 @@
     (package-refresh-contents)
     (package-install package)))
 
-; http://bytes.inso.cc/2011/08/13/auto-installing-packages-in-emacs-with-elpa-and-el-get/
-; derived from ELPA installation
-; http://tromey.com/elpa/install.html
+;; http://bytes.inso.cc/2011/08/13/auto-installing-packages-in-emacs-with-elpa-and-el-get/
+;; derived from ELPA installation
+;; http://tromey.com/elpa/install.html
 (defun eval-url (url)
   (let ((buffer (url-retrieve-synchronously url)))
-  (save-excursion
-    (set-buffer buffer)
-    (goto-char (point-min))
-    (re-search-forward "^$" nil 'move)
-    (eval-region (point) (point-max))
-    (kill-buffer (current-buffer)))))
+    (save-excursion
+      (set-buffer buffer)
+      (goto-char (point-min))
+      (re-search-forward "^$" nil 'move)
+      (eval-region (point) (point-max))
+      (kill-buffer (current-buffer)))))
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/umberto/themes")
@@ -47,7 +47,7 @@
 (unless (require 'el-get nil t)
   (install-el-get))
 
-; Load packages using ELPA
+;; Load packages using ELPA
 (package-ensure-installed 'apache-mode)
 (package-ensure-installed 'applescript-mode)
 (package-ensure-installed 'coffee-mode)
@@ -62,24 +62,25 @@
 (package-ensure-installed 'smarty-mode)
 (package-ensure-installed 'yaml-mode)
 (package-ensure-installed 'rust-mode)
+(package-ensure-installed 'web-mode)
 
-; Load specific packages from github using el-get
-; extra recipes for packages unknown to el-get (yet)
+;; Load specific packages from github using el-get
+;; extra recipes for packages unknown to el-get (yet)
 (setq el-get-sources
       '((:name umberto
                :type git
                :url "git://github.com/eirikref/dotfiles.git"
-	       :load ".emacs.d/umberto-theme.el"
+               :load ".emacs.d/umberto-theme.el"
                )
-	(:name applescript-contrib
+        (:name applescript-contrib
                :type git
                :url "git://github.com/echosa/emacs-mailapp.git"
-	       :load "applescript-contrib.el"
+               :load "applescript-contrib.el"
                ))
       )
 
 
-; list all packages you want installed
+;; list all packages you want installed
 (setq my-el-get-packages
       (append
        '(umberto)
@@ -101,7 +102,7 @@
       (tooltip-mode -1))
   (if window-system
       (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+    (scroll-bar-mode -1)))
 ;;
 ;; Theme, font, colors, and behavior
 ;;
