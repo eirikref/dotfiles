@@ -103,12 +103,22 @@ function setPrompt
 
     PROMPT_COMMAND='export ERR=$?'
 
+    case "$TERM" in
+        "dumb")
+            PS1="> "
+            ;;
+        xterm*|rxvt*|eterm*|screen*)
     PS1="${BRIGHT_VIOLET}[${VIOLET}\u@\h${WHITE}:\w\
 ${GREEN}\$(parseGitBranch)\
 ${BRIGHT_VIOLET}]${NORMAL}\$ ${RESET}"
+    ;;
+        *)
+            PS1="> "
+            ;;
+    esac
+
     PS2='> '
     PS4='+ '
-
 }
 setPrompt
 
