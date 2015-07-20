@@ -9,6 +9,8 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+## PATH
+export PATH="$PATH:/usr/local/mysql/bin:~/bin"
 
 ## Terminal
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
