@@ -38,7 +38,7 @@
       (kill-buffer (current-buffer)))))
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/umberto/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/umberto/.emacs.d")
 
 (defun install-el-get ()
   (eval-url
@@ -48,21 +48,21 @@
   (install-el-get))
 
 ;; Load packages using ELPA
-(package-ensure-installed 'apache-mode)
-(package-ensure-installed 'applescript-mode)
+;; (package-ensure-installed 'apache-mode)
+;; (package-ensure-installed 'applescript-mode)
 (package-ensure-installed 'coffee-mode)
 (package-ensure-installed 'css-mode)
-(package-ensure-installed 'dart-mode)
+;; (package-ensure-installed 'dart-mode)
 (package-ensure-installed 'js2-mode)
-(package-ensure-installed 'json-mode)
-(package-ensure-installed 'jsx-mode)
-(package-ensure-installed 'markdown-mode)
+;; (package-ensure-installed 'json-mode)
+;; (package-ensure-installed 'jsx-mode)
+;; (package-ensure-installed 'markdown-mode)
 (package-ensure-installed 'php-mode)
 (package-ensure-installed 'sass-mode)
-(package-ensure-installed 'smarty-mode)
-(package-ensure-installed 'yaml-mode)
-(package-ensure-installed 'rust-mode)
-(package-ensure-installed 'web-mode)
+;; (package-ensure-installed 'smarty-mode)
+;; (package-ensure-installed 'yaml-mode)
+;; (package-ensure-installed 'rust-mode)
+;; (package-ensure-installed 'web-mode)
 
 ;; Load specific packages from github using el-get
 ;; extra recipes for packages unknown to el-get (yet)
@@ -72,19 +72,13 @@
                :url "git://github.com/eirikref/dotfiles.git"
                :load ".emacs.d/umberto-theme.el"
                )
-        (:name applescript-contrib
-               :type git
-               :url "git://github.com/echosa/emacs-mailapp.git"
-               :load "applescript-contrib.el"
-               ))
-      )
+      ))
 
 
 ;; list all packages you want installed
 (setq my-el-get-packages
       (append
        '(umberto)
-       '(applescript-contrib)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-el-get-packages)
@@ -154,14 +148,7 @@
 ;;
 ;; Overriding modes
 ;;
-(defun my-dart-hook ()
-  (setq c-basic-offset 4))
-
-(add-hook 'dart-mode-hook 'my-dart-hook)
-(add-to-list 'auto-mode-alist '("\\.\\(hbs\\)\\'" . html-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.\\(scss\\)\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 
 ;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/folder-where-you-put-scss-mode-el"))
 (autoload 'scss-mode "scss-mode")
@@ -291,10 +278,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mouse-wheel-mode nil))
+ '(mouse-wheel-mode nil)
+ '(package-selected-packages
+   (quote
+    (scss-mode json-mode twig-mode sass-mode php-mode js2-mode coffee-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#141414" :foreground "#eeeeee" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "apple" :family "Monaco")))))
+(put 'downcase-region 'disabled nil)
