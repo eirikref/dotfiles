@@ -58,9 +58,10 @@
 ;; (package-ensure-installed 'jsx-mode)
 ;; (package-ensure-installed 'markdown-mode)
 (package-ensure-installed 'php-mode)
-(package-ensure-installed 'sass-mode)
+;; (package-ensure-installed 'scss-mode)
+;; (package-ensure-installed 'sass-mode)
 ;; (package-ensure-installed 'smarty-mode)
-;; (package-ensure-installed 'yaml-mode)
+(package-ensure-installed 'yaml-mode)
 ;; (package-ensure-installed 'rust-mode)
 ;; (package-ensure-installed 'web-mode)
 
@@ -144,16 +145,6 @@
 (setq make-backup-files nil)
 (setq vc-make-backup-files nil)
 (setq auto-save-default nil)
-
-;;
-;; Overriding modes
-;;
-;; (add-to-list 'auto-mode-alist '("\\.\\(scss\\)\\'" . css-mode))
-
-;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/folder-where-you-put-scss-mode-el"))
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-(setq scss-compile-at-save 'nil)
 
 ;;
 ;; Tramp
@@ -278,14 +269,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mouse-wheel-mode nil)
- '(package-selected-packages
-   (quote
-    (scss-mode json-mode twig-mode sass-mode php-mode js2-mode coffee-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#141414" :foreground "#eeeeee" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "apple" :family "Monaco")))))
-(put 'downcase-region 'disabled nil)
+ '(blink-cursor-mode nil)
+ '(package-selected-packages (quote (scss-mode yaml-mode php-mode js2-mode coffee-mode)))
+ '(tool-bar-mode nil))
+
+(set-frame-font "Hack 14")
