@@ -3,7 +3,7 @@
 
 (custom-theme-set-faces
  'umberto
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :width normal :height 90 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#eeeeee" :background "#141414" :stipple nil :inherit nil))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :width normal :height 120 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#eeeeee" :background "#141414" :stipple nil :inherit nil))))
  '(cursor ((t (:background "#F8F8F2" :foreground "#171A0B"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))

@@ -149,11 +149,10 @@
 ;;
 ;; Tramp
 ;;
-(setq tramp-default-method "ssh")
-(setq tramp-terminal-type "dumb")
-(setq tramp-debug-buffer t)
-(setq tramp-verbose 10)
-
+;; (setq tramp-default-method "ssh")
+;; (setq tramp-terminal-type "dumb")
+;; (setq tramp-debug-buffer t)
+;; (setq tramp-verbose 10)
 
 ;;
 ;; Everything below this mark is just old stuff I have not yet looked
@@ -264,6 +263,7 @@
 
 ;; ;; start the emacs server
 ;; ;; (server-start)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
