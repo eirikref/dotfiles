@@ -270,7 +270,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
- '(package-selected-packages (quote (scss-mode yaml-mode php-mode js2-mode coffee-mode)))
+ '(package-selected-packages
+   (quote
+    (twig-mode scss-mode yaml-mode php-mode js2-mode coffee-mode)))
  '(tool-bar-mode nil))
 
 (set-frame-font "Hack 14")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

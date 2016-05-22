@@ -109,16 +109,25 @@
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 139 606 456 0 0 1280 777 </string>
+	<string>269 177 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1967 -151 592 584 1280 -640 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>706 14 570 376 0 0 1280 777 </string>
+	<string>209 131 878 629 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>17 366 570 376 0 0 1280 777 </string>
+	<string>647 51 598 405 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>268 435 906 727 0 0 2560 1417 </string>
+	<string>0 6 794 769 0 0 1280 777 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>553 6 689 769 0 0 1280 777 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>14 6 1242 769 0 0 1280 777 </string>
 	<key>NeverWarnAboutShortLivedSessions_569BF772-7BE9-4514-ABFB-81C04293225F</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -870,6 +879,8 @@
 			<string>/Users/eirik.refsdal</string>
 		</dict>
 	</array>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncSilenceAnnoyingBellAutomatically</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -886,6 +897,8 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
@@ -925,6 +938,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/eirikref/github/eirikref/dotfiles</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -944,13 +959,15 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-02-25T14:01:21Z</date>
+	<date>2016-04-21T09:34:47Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
+	<key>ShowFullScreenTabBar</key>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
@@ -1001,6 +1018,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160206</string>
+	<string>2.9.20160313</string>
 </dict>
 </plist>
