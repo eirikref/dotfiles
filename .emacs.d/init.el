@@ -63,7 +63,7 @@
 ;; (package-ensure-installed 'smarty-mode)
 (package-ensure-installed 'yaml-mode)
 ;; (package-ensure-installed 'rust-mode)
-;; (package-ensure-installed 'web-mode)
+(package-ensure-installed 'web-mode)
 
 ;; Load specific packages from github using el-get
 ;; extra recipes for packages unknown to el-get (yet)
@@ -158,6 +158,8 @@
 ;; Everything below this mark is just old stuff I have not yet looked
 ;; through
 ;;
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
 
 ;;
 ;; General configuration
@@ -272,7 +274,7 @@
  '(blink-cursor-mode nil)
  '(package-selected-packages
    (quote
-    (twig-mode scss-mode yaml-mode php-mode js2-mode coffee-mode)))
+    (react-snippets csharp-mode less-css-mode twig-mode scss-mode yaml-mode php-mode js2-mode coffee-mode)))
  '(tool-bar-mode nil))
 
 (set-frame-font "Hack 14")
@@ -282,3 +284,61 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; ;; delay execution of this code until `web-mode' is turned on.
+;; (with-eval-after-load "web-mode"
+;;   ;;needed to bind a key for `js2-mode-map'
+;;   (require 'js2-mode)
+;;   (require 'cl)
+
+;;   (defun my/js2-mode-on-region (start end)
+;;     "Narrow on the active region, then turn on js2-mode."
+;;     (interactive "r")
+;;     (deactivate-mark)
+;;     (narrow-to-region start end)
+;;     (js2-mode))
+
+;;   (cl-defun my/focus-javascript () ;using `cl-defun' to allow `return-from'
+;;     "Automatcially narrow between <script> tags, then turn on js2-mode."
+;;     (interactive)
+;;     (let ((start-tag-name "<script")
+;;           (end-tag-name   "</script")
+;;           (start          nil)
+;;           (end            nil))
+;;       ;; Find start tag. Search backwards first to give priority to tag pairs
+;;       ;; the cursor is currently inside.
+;;       (setq start (search-backward start-tag-name nil t))
+;;       (when (null start)
+;;         ;; if start tag not found backwards, then try forwards.
+;;         (setq start (search-forward start-tag-name nil t)))
+;;       (when (null start)
+;;         (message "start tag not found")
+;;         (return-from my/focus-javascript nil))
+;;       ;;start is found, move cursor down a line, start highlighitng
+;;       (next-line)
+;;       (move-beginning-of-line nil)
+;;       (set-mark-command nil) ;(evil-visual-line)
+;;       ;; jump to end tag. always search forward
+;;       (setq end (search-forward end-tag-name nil t))
+;;       (when (null end)
+;;         (deactivate-mark)
+;;         (message "end tag not found")
+;;         (return-from my/focus-javascript nil))
+;;       ;;end tag is found. now move cursor up one line
+;;       (previous-line)
+;;       (move-end-of-line nil)
+;;       ;; turn on js2-mode for this region. (and narrow)
+;;       (call-interactively #'my/js2-mode-on-region)))
+
+;;   (defun my/unfocus-javascript ()
+;;     "Undo the effects of `my/focus-javascript'."
+;;     (interactive)
+;;     (widen)
+;;     (web-mode))
+
+;;   ;; key bindings
+;;   (define-key web-mode-map (kbd "C-c j") #'my/focus-javascript)
+;;   ;; TODO: Use a different technique for this keybind. If we didn't enter
+;;   ;; `js2-mode' from `web-mode' then we don't want `my/unfocus-javascript' to
+;;   ;; turn on web-mode.
+;;   (define-key js2-mode-map (kbd "C-c u") #'my/unfocus-javascript))

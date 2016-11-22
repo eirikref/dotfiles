@@ -6,6 +6,8 @@
 	<true/>
 	<key>AllowClipboardAccess</key>
 	<false/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -115,17 +117,19 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 177 606 456 0 0 1280 777 </string>
+	<string>1236 958 606 456 0 0 2560 1417 </string>
+	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
+	<string>332 453 616 174 0 0 1280 777 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1967 -151 592 584 1280 -640 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>209 131 878 629 0 0 1280 777 </string>
+	<string>687 68 570 377 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>647 51 598 405 0 0 1280 777 </string>
+	<string>164 31 990 622 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 6 794 769 0 0 1280 777 </string>
+	<string>43 9 976 762 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>553 6 689 769 0 0 1280 777 </string>
+	<string>1127 540 1277 752 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>14 6 1242 769 0 0 1280 777 </string>
 	<key>NeverWarnAboutShortLivedSessions_569BF772-7BE9-4514-ABFB-81C04293225F</key>
@@ -879,6 +883,10 @@
 			<string>/Users/eirik.refsdal</string>
 		</dict>
 	</array>
+	<key>NoSyncConfirmBeta</key>
+	<true/>
+	<key>NoSyncInstallationId</key>
+	<string>ABD57092-08F5-4B3B-94AD-AA81AFDC2B60</string>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncSilenceAnnoyingBellAutomatically</key>
@@ -955,11 +963,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing3.xml</string>
+	<string>https://iterm2.com/appcasts/testing3.xml?shard=24</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-04-21T09:34:47Z</date>
+	<date>2016-07-11T08:40:47Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1018,6 +1026,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160313</string>
+	<string>3.0.3</string>
 </dict>
 </plist>

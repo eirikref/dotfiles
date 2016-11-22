@@ -14,10 +14,10 @@ export PATH="$PATH:/usr/local/mysql/bin:~/bin"
 
 ## Terminal
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    alias ls='ls --color=auto'
+    alias ls='ls -la --color=auto'
     export TERM=xterm-256color
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    alias ls='ls -G'
+    alias ls='ls -la -G'
 fi
 
 export CLICOLOR=1
@@ -149,4 +149,16 @@ _ssh() {
 # Allow the user to set the title.
 function title {
     PROMPT_COMMAND="echo -ne \"\033]0;$1\007\""
+}
+
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+            man "$@"
 }
