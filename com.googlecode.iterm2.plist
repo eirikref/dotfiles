@@ -126,12 +126,14 @@
 	<string>269 320 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>332 454 616 174 0 0 1280 778 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>269 130 796 473 0 0 1280 778 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1967 -151 592 584 1280 -640 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>356 47 906 699 0 0 1280 778 </string>
+	<string>139 58 1074 685 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>602 146 1165 951 0 0 2560 1418 </string>
+	<string>50 401 570 377 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>99 343 570 377 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -981,7 +983,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-11-22T20:44:18Z</date>
+	<date>2016-11-24T21:59:41Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
