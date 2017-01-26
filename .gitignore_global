@@ -2,3 +2,7 @@
 .svn
 .svn/*
 .DS_Store
+
+.envrc
+.foreman
+.ruby-version

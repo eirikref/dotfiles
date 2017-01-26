@@ -127,15 +127,15 @@
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>332 454 616 174 0 0 1280 778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 130 796 473 0 0 1280 778 </string>
+	<string>218 120 796 473 0 0 1280 778 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1967 -151 592 584 1280 -640 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>139 58 1074 685 0 0 1280 778 </string>
+	<string>102 288 570 452 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>50 401 570 377 0 0 1280 778 </string>
+	<string>107 137 906 615 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>99 343 570 377 0 0 1280 778 </string>
+	<string>547 212 570 377 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>402 349 570 377 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -961,7 +961,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/eirikref/github/eirikref/dotfiles</string>
+	<string>/Users/eirikref/src/github/eirikref/dotfiles</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
@@ -983,7 +983,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-11-24T21:59:41Z</date>
+	<date>2017-01-23T09:19:23Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1042,6 +1042,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.12</string>
+	<string>3.0.13</string>
 </dict>
 </plist>

@@ -64,6 +64,8 @@
 (package-ensure-installed 'yaml-mode)
 ;; (package-ensure-installed 'rust-mode)
 (package-ensure-installed 'web-mode)
+(package-ensure-installed 'editorconfig)
+(package-ensure-installed 'slim-mode)
 
 ;; Load specific packages from github using el-get
 ;; extra recipes for packages unknown to el-get (yet)
@@ -271,11 +273,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
  '(package-selected-packages
    (quote
-    (react-snippets csharp-mode less-css-mode twig-mode scss-mode yaml-mode php-mode js2-mode coffee-mode)))
- '(tool-bar-mode nil))
+    (slim-mode editorconfig yaml-mode web-mode twig-mode smarty-mode sass-mode rust-mode php-mode markdown-mode less-css-mode jsx-mode json-mode js2-mode dart-mode csharp-mode coffee-mode applescript-mode apache-mode))))
 
 (set-frame-font "Hack 14")
 (custom-set-faces
