@@ -65,11 +65,12 @@
 ;; (package-ensure-installed 'rust-mode)
 (package-ensure-installed 'web-mode)
 (package-ensure-installed 'editorconfig)
+(package-ensure-installed 'slim-mode)
 
-(use-package editorconfig
-  :ensure t
-  :config
-  (editorconfig-mode 1))
+;;(use-package editorconfig
+;;  :ensure t
+;;  :config
+;;  (editorconfig-mode 1))
 (editorconfig-mode 1)
 
 ;; Load specific packages from github using el-get
