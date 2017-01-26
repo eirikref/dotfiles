@@ -162,3 +162,9 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
             man "$@"
 }
+
+eval "$(direnv hook bash)"
+HIST_TS="\033[0;36m"
+HIST_NOCOLOR="\033[0m"
+export HISTTIMEFORMAT=`echo -e ${HIST_TS}[%F %T] $HIST_NOCOLOR `
+# export HISTTIMEFORMAT="%F ${VIOLET}%T "
