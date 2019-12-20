@@ -73,6 +73,12 @@
 ;; (package-ensure-installed 'less-css-mode)
 (package-ensure-installed 'vue-mode)
 
+;;(use-package editorconfig
+;;  :ensure t
+;;  :config
+;;  (editorconfig-mode 1))
+(editorconfig-mode 1)
+
 ;; Load specific packages from github using el-get
 ;; extra recipes for packages unknown to el-get (yet)
 (setq el-get-sources
