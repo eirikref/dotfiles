@@ -38,6 +38,7 @@
       (kill-buffer (current-buffer)))))
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path "~/.emacs.d/custom")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/el-get/umberto/.emacs.d")
 
 (defun install-el-get ()
@@ -50,22 +51,27 @@
 ;; Load packages using ELPA
 ;; (package-ensure-installed 'apache-mode)
 ;; (package-ensure-installed 'applescript-mode)
-(package-ensure-installed 'coffee-mode)
-(package-ensure-installed 'css-mode)
+;; (package-ensure-installed 'coffee-mode)
 ;; (package-ensure-installed 'dart-mode)
-(package-ensure-installed 'js2-mode)
 ;; (package-ensure-installed 'json-mode)
 ;; (package-ensure-installed 'jsx-mode)
 ;; (package-ensure-installed 'markdown-mode)
-(package-ensure-installed 'php-mode)
-;; (package-ensure-installed 'scss-mode)
-;; (package-ensure-installed 'sass-mode)
-;; (package-ensure-installed 'smarty-mode)
-(package-ensure-installed 'yaml-mode)
 ;; (package-ensure-installed 'rust-mode)
-(package-ensure-installed 'web-mode)
+;; (package-ensure-installed 'scss-mode)
+;; (package-ensure-installed 'smarty-mode)
+;; (package-ensure-installed 'web-mode)
+;; (package-ensure-installed 'yaml-mode)
+(package-ensure-installed 'css-mode)
 (package-ensure-installed 'editorconfig)
+(package-ensure-installed 'js2-mode)
+(package-ensure-installed 'php-mode)
+(package-ensure-installed 'rjsx-mode)
+(package-ensure-installed 'sass-mode)
 (package-ensure-installed 'slim-mode)
+(package-ensure-installed 'twig-mode)
+(package-ensure-installed 'auto-complete)
+;; (package-ensure-installed 'less-css-mode)
+(package-ensure-installed 'vue-mode)
 
 ;; Load specific packages from github using el-get
 ;; extra recipes for packages unknown to el-get (yet)
@@ -138,8 +144,8 @@
 ;;
 (add-to-list 'default-frame-alist '(left . 0))
 (add-to-list 'default-frame-alist '(top . 0))
-(add-to-list 'default-frame-alist '(height . 56))
-(add-to-list 'default-frame-alist '(width . 98))
+(add-to-list 'default-frame-alist '(height . 39))
+(add-to-list 'default-frame-alist '(width . 110))
 
 ;;
 ;; Backup files and stuff
@@ -156,11 +162,41 @@
 ;; (setq tramp-debug-buffer t)
 ;; (setq tramp-verbose 10)
 
+
+(setq column-number-mode t)
+
+;; https://github.com/felipeochoa/rjsx-mode
+(with-eval-after-load 'rjsx
+  (define-key rjsx-mode-map "<" nil)
+  (define-key rjsx-mode-map (kbd "C-d") nil))
+
+(defcustom scss-sass-command "/Users/eirikref/.rbenv/shims/sass"
+  "Command used to compile SCSS files, should be sass or the
+  complete path to your sass runnable example:
+  \"~/.gem/ruby/1.8/bin/sass\""
+  :group 'scss)
+
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(require 'editorconfig)
+(editorconfig-mode 1)
+
+
+;; (cl-loop for face in (face-list) do
+;;      (set-face-attribute face nil :foreground nil :background nil))
+
+(add-hook 'mmm-mode-hook
+          (lambda ()
+            (set-face-background 'mmm-default-submode-face nil)))
+
+(setq js-indent-level 4)
+
+
+
 ;;
 ;; Everything below this mark is just old stuff I have not yet looked
 ;; through
 ;;
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
 
 ;;
@@ -275,7 +311,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (slim-mode editorconfig yaml-mode web-mode twig-mode smarty-mode sass-mode rust-mode php-mode markdown-mode less-css-mode jsx-mode json-mode js2-mode dart-mode csharp-mode coffee-mode applescript-mode apache-mode))))
+    (web-mode vue-mode auto-complete twig-mode sass-mode rjsx-mode slim-mode editorconfig php-mode))))
 
 (set-frame-font "Hack 14")
 (custom-set-faces
@@ -342,3 +378,24 @@
 ;;   ;; `js2-mode' from `web-mode' then we don't want `my/unfocus-javascript' to
 ;;   ;; turn on web-mode.
 ;;   (define-key js2-mode-map (kbd "C-c u") #'my/unfocus-javascript))
+
+;;; It is the opposite of fill-paragraph    
+(defun unfill-paragraph ()
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+;; Handy key definition
+(define-key global-map "\M-Q" 'unfill-paragraph)
+
+(defun unfill-region (beg end)
+  "Unfill the region, joining text paragraphs into a single
+    logical line.  This is useful, e.g., for use with
+    `visual-line-mode'."
+  (interactive "*r")
+  (let ((fill-column (point-max)))
+    (fill-region beg end)))
+
+;; Handy key definition
+(define-key global-map "\C-\M-Q" 'unfill-region)

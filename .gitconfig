@@ -1,6 +1,6 @@
 [user]
-  name = Eirik Refsdal
-  email = eirikref@gmail.com
+	name = Eirik Refsdal
+	email = eirikref@gmail.com
 
 [core]
 excludesfile = ~/.gitignore_global
@@ -13,6 +13,7 @@ editor = emacs
   co = checkout
   df = diff
   lg = log -p
+  parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
 
 [color]
   ui = auto
@@ -48,3 +49,5 @@ editor = emacs
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+[rerere]
+	enabled = true

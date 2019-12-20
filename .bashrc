@@ -10,7 +10,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 ## PATH
-export PATH="$PATH:/usr/local/mysql/bin:~/bin"
+export PATH="$PATH:/usr/local/mysql/bin:~/bin:/usr/local/sbin"
 
 ## Terminal
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
