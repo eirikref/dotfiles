@@ -1,12 +1,10 @@
 ;;
-;; Emacs configuration
-;;
-
-;;
 ;; Personal information
 ;;
 (setq user-full-name    "Eirik Refsdal")
 (setq user-mail-address "eirik@gmail.com")
+
+
 
 ;;
 ;; Basic bootstrapping
@@ -15,6 +13,8 @@
 (require 'cl)
 (require 'package)
 
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -65,19 +65,12 @@
 (package-ensure-installed 'editorconfig)
 (package-ensure-installed 'js2-mode)
 (package-ensure-installed 'php-mode)
-(package-ensure-installed 'rjsx-mode)
 (package-ensure-installed 'sass-mode)
-(package-ensure-installed 'slim-mode)
+;; (package-ensure-installed 'slim-mode)
 (package-ensure-installed 'twig-mode)
 (package-ensure-installed 'auto-complete)
 ;; (package-ensure-installed 'less-css-mode)
 (package-ensure-installed 'vue-mode)
-
-;;(use-package editorconfig
-;;  :ensure t
-;;  :config
-;;  (editorconfig-mode 1))
-(editorconfig-mode 1)
 
 ;; Load specific packages from github using el-get
 ;; extra recipes for packages unknown to el-get (yet)
@@ -88,7 +81,6 @@
                :load ".emacs.d/umberto-theme.el"
                )
       ))
-
 
 ;; list all packages you want installed
 (setq my-el-get-packages
@@ -101,9 +93,11 @@
 
 
 ;;
+;; General settings
+;; 
+
 ;; Turn off some of the more annoying features appearing after Emacs 21
 ;; Copied from https://github.com/oyving/dotfiles
-;;
 (when (>= emacs-major-version 21)
   (setf (default-value 'cursor-in-non-selected-windows) nil)
   (blink-cursor-mode 0)
@@ -112,296 +106,64 @@
   (if window-system
       (tool-bar-mode -1)
     (scroll-bar-mode -1)))
-;;
+
 ;; Theme, font, colors, and behavior
-;;
 (load-theme 'umberto t)
 (setq inhibit-startup-message t) ;; Skip the start page
 
-;;
 ;; Keyboard configuration
-;;
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end]  'end-of-buffer)
 (global-set-key [(C n)] 'isearch-repeat-forward)
 (global-set-key [(M g)] 'goto-line)
 
-;;
 ;; Language, encoding and input
-;;
 (set-language-environment "UTF-8")
 
-;;
 ;; Tabs, spaces and indentation
-;;
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq         c-basic-offset 4)
+(setq         js-indent-level 4)
 
-;;
 ;; OSX Settings
-;;
 (setq mac-option-modifier nil
       mac-command-modifier 'meta
       x-select-enable-clipboard t)
 
-;;
-;; Preferences for my MacBook Air 13"
-;;
+;; Preferences for my MacBook
 (add-to-list 'default-frame-alist '(left . 0))
 (add-to-list 'default-frame-alist '(top . 0))
-(add-to-list 'default-frame-alist '(height . 39))
-(add-to-list 'default-frame-alist '(width . 110))
+(add-to-list 'default-frame-alist '(height . 70))
+(add-to-list 'default-frame-alist '(width . 107))
 
-;;
 ;; Backup files and stuff
-;;
 (setq make-backup-files nil)
 (setq vc-make-backup-files nil)
 (setq auto-save-default nil)
 
+;; Font
+(set-frame-font "Hack 14")
+
+
 ;;
+;; Mode specific settings
+;;
+
+;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Displaying-the-current-line-or-column.html
+(setq column-number-mode t)
+
+;; https://github.com/editorconfig/editorconfig-emacs
+(editorconfig-mode 1)
+
+;; Show matching pair of parentheses, https://www.emacswiki.org/emacs/ShowParenMode
+(show-paren-mode t)
+
+;;
+(add-to-list 'auto-mode-alist '("\\.scss.spec\\'" . scss-mode))
+
 ;; Tramp
-;;
 ;; (setq tramp-default-method "ssh")
 ;; (setq tramp-terminal-type "dumb")
 ;; (setq tramp-debug-buffer t)
 ;; (setq tramp-verbose 10)
-
-
-(setq column-number-mode t)
-
-;; https://github.com/felipeochoa/rjsx-mode
-(with-eval-after-load 'rjsx
-  (define-key rjsx-mode-map "<" nil)
-  (define-key rjsx-mode-map (kbd "C-d") nil))
-
-(defcustom scss-sass-command "/Users/eirikref/.rbenv/shims/sass"
-  "Command used to compile SCSS files, should be sass or the
-  complete path to your sass runnable example:
-  \"~/.gem/ruby/1.8/bin/sass\""
-  :group 'scss)
-
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(require 'editorconfig)
-(editorconfig-mode 1)
-
-
-;; (cl-loop for face in (face-list) do
-;;      (set-face-attribute face nil :foreground nil :background nil))
-
-(add-hook 'mmm-mode-hook
-          (lambda ()
-            (set-face-background 'mmm-default-submode-face nil)))
-
-(setq js-indent-level 4)
-
-
-
-;;
-;; Everything below this mark is just old stuff I have not yet looked
-;; through
-;;
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
-
-;;
-;; General configuration
-;;
-;; (setq
-;;    backup-by-copying t      ; don't clobber symlinks
-;;    backup-directory-alist
-;;     '(("." . "/tmp/.eirikref-saves"))    ; don't litter my fs tree
-;;    delete-old-versions t
-;;    kept-new-versions 6
-;;    kept-old-versions 2
-;;    scroll-step 1
-;;    scroll-margin 5
-;;    version-control t)       ; use versioned backups
-;; (fset 'yes-or-no-p 'y-or-n-p)
-;; (blink-cursor-mode -1)
-;; (global-set-key [home] 'beginning-of-buffer)
-;; (global-set-key [end]  'end-of-buffer)
-;; (setq-default transient-mark-mode t)
-;; (setq fill-column 78)
-;; (setq c-default-style "gnu")
-;; (column-number-mode t)
-;; (setq-default mouse-yank-at-point t)
-
-;; (if (fboundp 'global-font-lock-mode)
-;; 	(global-font-lock-mode 1)        ; GNU Emacs
-;;   (setq font-lock-auto-fontify t))   ; XEmacs
-
-;; (setq require-final-newline nil)
-;; (setq inhibit-default-init t)
-
-;; (setq query-replace-highlight t)
-;; (setq search-highlight t)
-;; (setq font-lock-maximum-decoration t)
-
-;; ;; (autoload 'php-mode "php-mode" "PHP Mode" t)
-;; (add-to-list 'auto-mode-alist '("\\.\\(php\\|inc\\)\\'" . php-mode))
-
-;; (defun php-mode-user-hook ()
-;;   (setq tab-width 4
-;;         c-basic-offset 4
-;;         c-hanging-comment-ender-p nil
-;;         indent-tabs-mode
-;;         font-lock-mode t
-;;         (not
-;;          (and (string-match "/\\(PEAR\\|pear\\)/" (buffer-file-name))
-;;               (string-match "\.php$" (buffer-file-name))))))
-
-
-;; (defun sacha/increase-font-size ()
-;;   (interactive)
-;;   (set-face-attribute 'default
-;;                       nil
-;;                       :height
-;;                       (ceiling (* 1.10
-;;                                   (face-attribute 'default :height)))))
-;; (defun sacha/decrease-font-size ()
-;;   (interactive)
-;;   (set-face-attribute 'default
-;;                       nil
-;;                       :height
-;;                       (floor (* 0.9
-;;                                   (face-attribute 'default :height)))))
-;; (global-set-key (kbd "C-+") 'sacha/increase-font-size)
-;; (global-set-key (kbd "C--") 'sacha/decrease-font-size)
-
-
-;; Copied from Oyvind:
-
-;; ;; we want marking of parens
-;; ;; (show-paren-mode t)
-
-;; ;; colorize in editing modes
-;; ;; (global-font-lock-mode t)
-
-;; ;; remove irritating UI elements
-;; ;; (menu-bar-mode -1)
-
-;; ;; show columns as well as lines
-;; ;; (column-number-mode t)
-
-;; ;; lazy typist, y or n instead of yes or no
-;; ;; (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; ;; we want ido-mode for finding files
-;; ;; (ido-mode t)
-;; ;; (setq ido-enable-flex-matching t)
-
-;; ;; we do not want "magic" handling of tabs
-;; (setf indent-tabs-mode nil)
-
-;; ;; ensure UTF-8
-;; (set-language-environment "UTF-8")
-
-;; ;; get custom configuration into a different file
-;; ;; (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
-
-;; ;; keep backup files from littering the file system
-;; ;; (setf backup-directory-alist '(("." . "~/.emacs.d/backup")))
-
-;; ;; use org-mode for .org files
-;; ;; (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
-;; ;; start the emacs server
-;; ;; (server-start)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (web-mode vue-mode auto-complete twig-mode sass-mode rjsx-mode slim-mode editorconfig php-mode))))
-
-(set-frame-font "Hack 14")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; ;; delay execution of this code until `web-mode' is turned on.
-;; (with-eval-after-load "web-mode"
-;;   ;;needed to bind a key for `js2-mode-map'
-;;   (require 'js2-mode)
-;;   (require 'cl)
-
-;;   (defun my/js2-mode-on-region (start end)
-;;     "Narrow on the active region, then turn on js2-mode."
-;;     (interactive "r")
-;;     (deactivate-mark)
-;;     (narrow-to-region start end)
-;;     (js2-mode))
-
-;;   (cl-defun my/focus-javascript () ;using `cl-defun' to allow `return-from'
-;;     "Automatcially narrow between <script> tags, then turn on js2-mode."
-;;     (interactive)
-;;     (let ((start-tag-name "<script")
-;;           (end-tag-name   "</script")
-;;           (start          nil)
-;;           (end            nil))
-;;       ;; Find start tag. Search backwards first to give priority to tag pairs
-;;       ;; the cursor is currently inside.
-;;       (setq start (search-backward start-tag-name nil t))
-;;       (when (null start)
-;;         ;; if start tag not found backwards, then try forwards.
-;;         (setq start (search-forward start-tag-name nil t)))
-;;       (when (null start)
-;;         (message "start tag not found")
-;;         (return-from my/focus-javascript nil))
-;;       ;;start is found, move cursor down a line, start highlighitng
-;;       (next-line)
-;;       (move-beginning-of-line nil)
-;;       (set-mark-command nil) ;(evil-visual-line)
-;;       ;; jump to end tag. always search forward
-;;       (setq end (search-forward end-tag-name nil t))
-;;       (when (null end)
-;;         (deactivate-mark)
-;;         (message "end tag not found")
-;;         (return-from my/focus-javascript nil))
-;;       ;;end tag is found. now move cursor up one line
-;;       (previous-line)
-;;       (move-end-of-line nil)
-;;       ;; turn on js2-mode for this region. (and narrow)
-;;       (call-interactively #'my/js2-mode-on-region)))
-
-;;   (defun my/unfocus-javascript ()
-;;     "Undo the effects of `my/focus-javascript'."
-;;     (interactive)
-;;     (widen)
-;;     (web-mode))
-
-;;   ;; key bindings
-;;   (define-key web-mode-map (kbd "C-c j") #'my/focus-javascript)
-;;   ;; TODO: Use a different technique for this keybind. If we didn't enter
-;;   ;; `js2-mode' from `web-mode' then we don't want `my/unfocus-javascript' to
-;;   ;; turn on web-mode.
-;;   (define-key js2-mode-map (kbd "C-c u") #'my/unfocus-javascript))
-
-;;; It is the opposite of fill-paragraph    
-(defun unfill-paragraph ()
-  "Takes a multi-line paragraph and makes it into a single line of text."
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil)))
-
-;; Handy key definition
-(define-key global-map "\M-Q" 'unfill-paragraph)
-
-(defun unfill-region (beg end)
-  "Unfill the region, joining text paragraphs into a single
-    logical line.  This is useful, e.g., for use with
-    `visual-line-mode'."
-  (interactive "*r")
-  (let ((fill-column (point-max)))
-    (fill-region beg end)))
-
-;; Handy key definition
-(define-key global-map "\C-\M-Q" 'unfill-region)
