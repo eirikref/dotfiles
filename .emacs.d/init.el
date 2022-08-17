@@ -3,7 +3,7 @@
 ;;
 (setq user-full-name    "Eirik Refsdal")
 (setq user-mail-address "eirik@gmail.com")
-
+(setq default-directory (concat (getenv "HOME") "/"))
 
 
 ;;
@@ -16,8 +16,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 (defun package-ensure-installed (package)
@@ -59,7 +58,7 @@
 ;; (package-ensure-installed 'rust-mode)
 ;; (package-ensure-installed 'scss-mode)
 ;; (package-ensure-installed 'smarty-mode)
-;; (package-ensure-installed 'web-mode)
+(package-ensure-installed 'web-mode)
 ;; (package-ensure-installed 'yaml-mode)
 (package-ensure-installed 'css-mode)
 (package-ensure-installed 'editorconfig)
@@ -94,7 +93,7 @@
 
 ;;
 ;; General settings
-;; 
+;;
 
 ;; Turn off some of the more annoying features appearing after Emacs 21
 ;; Copied from https://github.com/oyving/dotfiles
@@ -156,9 +155,6 @@
 ;; https://github.com/editorconfig/editorconfig-emacs
 (editorconfig-mode 1)
 
-;; Show matching pair of parentheses, https://www.emacswiki.org/emacs/ShowParenMode
-(show-paren-mode t)
-
 ;;
 (add-to-list 'auto-mode-alist '("\\.scss.spec\\'" . scss-mode))
 
@@ -167,3 +163,33 @@
 ;; (setq tramp-terminal-type "dumb")
 ;; (setq tramp-debug-buffer t)
 ;; (setq tramp-verbose 10)
+
+;; Vue
+(add-hook 'mmm-mode-hook
+          (lambda ()
+            (set-face-background 'mmm-default-submode-face nil)))
+(setq vue-html-extra-indent 2)
+
+
+(setq web-mode-engines-alist
+      '(("blade"    . "\\.blade\\.'"))
+)
+
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
+(setq ring-bell-function 'ignore)
+
+;; (setq-default indent-tabs-mode nil)
+;; (setq web-mode-code-indent-offset 4)
+;; (setq web-mode-indent-style 4)
+
+;; Ruby mode magic stuff
+(setq ruby-insert-encoding-magic-comment nil)
+(setq enh-ruby-add-encoding-comment-on-save nil)
+
+(add-hook 'before-save-hook
+          'delete-trailing-whitespace)
+
+(setq show-paren-mode nil)
+(setq show-paren-delay 0)
+(setq blink-matching-paren nil)

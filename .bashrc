@@ -10,7 +10,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 ## PATH
-export PATH="$PATH:/usr/local/mysql/bin:~/bin:/usr/local/sbin"
+export PATH="$PATH:~/bin:/usr/local/sbin:~/.composer/vendor/bin"
 
 ## Terminal
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -168,3 +168,4 @@ HIST_TS="\033[0;36m"
 HIST_NOCOLOR="\033[0m"
 export HISTTIMEFORMAT=`echo -e ${HIST_TS}[%F %T] $HIST_NOCOLOR `
 # export HISTTIMEFORMAT="%F ${VIOLET}%T "
+. "$HOME/.cargo/env"

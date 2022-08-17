@@ -51,3 +51,5 @@ editor = emacs
 	required = true
 [rerere]
 	enabled = true
+[pull]
+	rebase = false
